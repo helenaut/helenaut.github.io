@@ -8,7 +8,7 @@
 }
 
 body {
-	margin: 0;
+	margin: 0 0 50px 0;
 	padding: 0;
 	font-family: helvetica, sans-serif;
 }
@@ -58,6 +58,7 @@ body {
 }
 
 .content {
+	margin: 0px 20px;
 		.content-header {
 			text-align: center;
 			font-size:3em;
@@ -67,8 +68,61 @@ body {
 
 		.content-width {
 			line-height: 140%;
-			width: 80%;
+			max-width: 900px;
 			margin: 0 auto;
+
+			&.books {
+				img {
+					width: 200px;
+					padding: 10px;
+				}
+				text-align: center;
+			}
+
+			&.places {
+				.column {
+					display: inline-block;
+					width: 297px;
+				}
+				.column-flex {
+					display: flex;
+					flex-direction: column;
+				}
+				.place {
+					height: 40px;
+					transition: height 1s;
+					&:hover {
+						height: 297px;
+					}
+					overflow: hidden;
+					position: relative;
+					text-align: center;
+					display: inline-block;
+					.tagline-background {
+						position: absolute;
+						width: 100%;
+						height: 100%;
+						color: transparent;
+						.tagline {
+							text-align: center;
+							margin-top: 10px;
+						}
+						background-color: rgba(0, 0, 0,.5);
+						color: white;
+						&:hover {
+							color: transparent;
+							background: none;
+						}
+					}
+					.image {
+						overflow: hidden;
+						img {
+							width: 100%;
+						}
+					}
+					
+				}
+			}
 		}
 	}
 
@@ -82,4 +136,28 @@ body {
 
 .black-bkg {
 	background-color: @black;
+}
+@media (max-width: 899px) {
+	.content {
+		.content-width.places {
+			display: flex;
+			flex-direction: column;
+			height: 50px;
+			.column {
+				display: block;
+				margin: 0 auto;
+				width: 90%;
+				text-align: center;
+				.column-flex {
+					display: block;
+				}
+			}
+			.place {
+				max-width: 640px;
+				&:hover {
+					height: 100%;
+				}
+			}
+		}
+	}
 }
